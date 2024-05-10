@@ -10,9 +10,29 @@ import {
 import { Feather } from "@expo/vector-icons";
 import MyButton from "../components/MyButton";
 import { useNavigation } from "@react-navigation/native";
+import { useAuth } from "../context/useAuth";
 
 export default function SignIn() {
   const navigation = useNavigation();
+  const [email,setEmail] = useState("");
+  const [password,setPassword] = useState("");
+  const [error,setError] = useState("");
+  const { signIn } = useAuth();
+
+  async function handleSubmit() {
+    try{
+      setError("")
+      await signIn({email, password})
+    }
+    catch (error) {
+      if(error.response && error.response.data && error.response.data.message){
+        setError(error.response.data.message);
+      } else {
+        setError("Falha No Login. Verifique Suas Credenciais.")
+      }
+    }
+  }
+
   return (
     <View style={style.container}>
       <TouchableOpacity onPress={()=> navigation.goBack()}>
@@ -29,16 +49,24 @@ export default function SignIn() {
         style={style.input}
         placeholder="Digite seu Email" 
         placeholderTextColor="#8a8787"
-        keyboardType="email-address"/>  
+        keyboardType="email-address"
+        value={email}
+        onChangeText={(text) => setEmail(text)}
+        />
         </View>
         <View style={style.inputBox}>
         <Feather name="lock" size={24} color="#8a8787"/>
           <TextInput
         style={style.input}
         placeholder="Digite sua Senha" 
-        placeholderTextColor="#8a8787"/>
+        placeholderTextColor="#8a8787"
+        secureTextEntry
+        value={password}
+        onChangeText={(text) => setPassword(text)}
+        />
         </View>
-        <MyButton text="Login" style={{width:"100%"}}/>
+        {error && <Text>{error}</Text>}
+        <MyButton onPress={handleSubmit} text="Login" style={{width:"100%"}}/>
       </View>
     </View>
   );

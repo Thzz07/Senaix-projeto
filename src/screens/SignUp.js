@@ -38,7 +38,7 @@ export default function SignUp() {
       if(err.response){
         setError(err.response.data.message);
       }
-      setError("Não Foi Possível Se Conectara Com O Servidor");
+      setError("Não Foi Possível Se Conectar Com O Servidor");
     }
   }
 
@@ -77,6 +77,7 @@ export default function SignUp() {
         style={style.input}
         placeholder="Digite sua Senha" 
         placeholderTextColor="#8a8787"
+        secureTextEntry
         value={password}
         onChangeText={(text) => setPassword(text)}/>
         </View>
