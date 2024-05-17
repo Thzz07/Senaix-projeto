@@ -27,6 +27,29 @@ export default function Profile() {
   const [password, setPassword] = useState("");
   const [photoUrl, setPhotoUrl] = useState("");
   const [editable, setEditable] = useState(false);
+  const {updateUser, signOut} = useAuth();
+
+  async function handleSubmit() {
+    setError("");
+    if(!email.trim() || !username.trim() || !password.trim()){
+      setError("Preencha Todos Os Campos!");
+      return;
+    }
+    try{
+      await api.patch("profile",{
+        email,username,password
+      })
+      Alert.alert("Sucesso", "Usuário Atualizado Com Sucesso!");
+      setEditable(false);
+    }catch(error){
+      if(error.response){
+        setError(error.response.data.message);
+      }
+      else{
+        setError("Não Foi Possível Se Comunicar Com O Servidor");
+      }
+    }
+  }
 
   async function pickImage() {
     let permissionResult =
@@ -137,7 +160,7 @@ export default function Profile() {
           <Text style={{ fontSize: 28, fontWeight: "600", color: "#ffffff" }}>
             Perfil
           </Text>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => signOut()}>
             <MaterialCommunityIcons name="logout" size={28} color="#fff" />
           </TouchableOpacity>
         </View>
@@ -219,7 +242,7 @@ export default function Profile() {
         {editable && (
         <View style={{ gap: 8, marginTop: 16, flexDirection: "row" }}>
         <MyButton onPress={() => setEditable(false)} style={{ flex: 1 }} text="Cancelar" />
-        <MyButton style={{ flex: 1 }} text="Salvar alterações" />
+        <MyButton onPress={() => handleSubmit()} style={{ flex: 1 }} text="Salvar alterações" />
       </View>
         )}
         
