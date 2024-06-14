@@ -4,14 +4,17 @@ import {
   TextInput,
   View,
   StatusBar,
+  Image,
   StyleSheet,
   TouchableOpacity,
   Alert,
+  ScrollView,
 } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import MyButton from "../components/MyButton";
 import { useNavigation } from "@react-navigation/native";
 import { api } from "../services/api";
+import Logo from "../assets/logo.png";
 
 export default function SignUp() {
   const navigation = useNavigation();
@@ -45,38 +48,37 @@ export default function SignUp() {
   return (
     <View style={style.container}>
       <TouchableOpacity onPress={()=> navigation.goBack()}>
-        <Feather name="chevron-left" size={32} color="#8a8787"/>
+        <Feather name="chevron-left" size={32} color="#FF8D68"/>
       </TouchableOpacity>
-      <View>
-        <Text style={style.title}>Estamos Quase Lá</Text>
-        <Text style={style.subtitle}>Faça seu cadastro para começar a utilizar o app.</Text>
+      <View style={{alignItems:"center",height:400}}>
+        <Image source={Logo}/>
       </View>
       <View style={{gap:16}}>
       <View style={style.inputBox}>
-        <Feather name="user" size={24} color="#8a8787"/>
+        <Feather name="user" size={24} color="#FF8D68"/>
           <TextInput
         style={style.input}
         placeholder="Digite seu Nome" 
-        placeholderTextColor="#8a8787"
+        placeholderTextColor="#FF8D68"
         value={username}
         onChangeText={(text) => setUsername(text)}/>
         </View>
         <View style={style.inputBox}>
-        <Feather name="mail" size={24} color="#8a8787"/>
+        <Feather name="mail" size={24} color="#FF8D68"/>
           <TextInput
         style={style.input}
         placeholder="Digite seu Email" 
-        placeholderTextColor="#8a8787"
+        placeholderTextColor="#FF8D68"
         keyboardType="email-address"
         value={email}
         onChangeText={(text) => setEmail(text)}/>  
         </View>
         <View style={style.inputBox}>
-        <Feather name="lock" size={24} color="#8a8787"/>
+        <Feather name="lock" size={24} color="#FF8D68"/>
           <TextInput
         style={style.input}
         placeholder="Digite sua Senha" 
-        placeholderTextColor="#8a8787"
+        placeholderTextColor="#FF8D68"
         secureTextEntry
         value={password}
         onChangeText={(text) => setPassword(text)}/>
@@ -90,24 +92,11 @@ export default function SignUp() {
 
 const style = StyleSheet.create({
   container: {
+    backgroundColor:"#1B2C7C",
     flex: 1,
     alignItems: "stretch",
     justifyContent: "space-between",
     padding: 16,
-  },
-
-  title: {
-    fontSize: 54,
-    fontWeight: "700",
-    width: 240,
-    color: "#3D3D4D",
-  },
-
-  subtitle: {
-    fontSize: 20,
-    fontWeight: "300",
-    width: 280,
-    marginTop: 16,
   },
 
   inputBox: {
@@ -116,17 +105,18 @@ const style = StyleSheet.create({
     gap: 16,
     padding: 16,
     borderWidth: 1,
-    borderColor: "#8a8787",
+    borderColor: "#FF8D68",
     borderRadius: 4,
     width: "100%",
   },
 
   input: {
+    color:"#FF8D68",
     flex: 1,
     fontSize: 18,
   },
   erro: {
-    color: "#DC1637",
+    color: "#F8F8FF",
     fontWeight: "400",
     textAlign: "center",
     marginVertical: 16,

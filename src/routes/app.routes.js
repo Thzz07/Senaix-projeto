@@ -1,10 +1,54 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Home from "../screens/Home";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Produtos from "../screens/Produtos";
+import AddProdutos from "../screens/AddProdutos";
+import EditProdutos from "../screens/EditProdutos";
+import AddCategorias from "../screens/AddCategorias";
+import EditCategoras from "../screens/EditCategorias";
+import Categorias from "../screens/Categorias";
+import { FontAwesome5, MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 import Profile from "../screens/Profile";
 
+
 const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
+
+export function HomeStack() {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false, 
+      }}
+    >
+      <Stack.Screen
+        name="Produtos"
+        component={Produtos}
+      />
+      <Stack.Screen name="AddProdutos" component={AddProdutos}/>
+      <Stack.Screen name="EditProdutos" component={EditProdutos}/>
+    </Stack.Navigator>
+    
+  );
+}
+
+function CategoriasStack(){
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false, 
+      }}
+    >
+      <Stack.Screen
+        name="Categorias"
+        component={Categorias}
+      />
+      <Stack.Screen name="AddCategorias" component={AddCategorias}/>
+      <Stack.Screen name="EditCategorias" component={EditCategoras}/>
+    </Stack.Navigator>
+    
+  );
+}
 
 export default function AppRoutes() {
   return (
@@ -12,46 +56,34 @@ export default function AppRoutes() {
       screenOptions={{
         headerShown: false,
         tabBarShowLabel: false,
-        tabBarActiveTintColor: "#DC1637",
-        tabBarInactiveTintColor: "#AEAEB3",
+        tabBarActiveTintColor: "#1B2C7C",
+        tabBarInactiveTintColor: "#FFFFFF",
+        tabBarActiveBackgroundColor: "#FF8D68",
+        tabBarInactiveBackgroundColor: "#FF8D68"
       }}
     >
       <Tab.Screen
-        name="Home"
-        component={Home}
+        name="HomeStack"
+        component={HomeStack}
         options={{
-          title: "Home",
+          title: "HomeStack",
           tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons
-              name="home-outline"
-              size={40}
+            <FontAwesome5
+              name="box"
+              size={30}
               color={color}
             />
           ),
         }}
       />
       <Tab.Screen
-        name="cars"
-        component={Home}
+        name="CategoriasStack"
+        component={CategoriasStack}
         options={{
-          title: "cars",
+          title: "CategoriasStack",
           tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons
-              name="car-outline"
-              size={40}
-              color={color}
-            />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="calendar"
-        component={Home}
-        options={{
-          title: "cars",
-          tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons
-              name="calendar-outline"
+            <MaterialIcons
+              name="window"
               size={40}
               color={color}
             />
@@ -66,7 +98,7 @@ export default function AppRoutes() {
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons
               name="account-outline"
-              size={40}
+              size={45}
               color={color}
             />
           ),

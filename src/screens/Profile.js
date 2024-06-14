@@ -152,16 +152,16 @@ export default function Profile() {
 
   return (
     <ScrollView contentContainerStyle={style.container}>
-      <View style={{ backgroundColor: "#1B1B1F", alignItems: "center" }}>
+      <View style={{ backgroundColor: "#00055C", alignItems: "center" }}>
         <View style={style.header}>
           <TouchableOpacity onPress={() => setEditable(true)}>
-            <MaterialCommunityIcons name="pencil" size={28} color="#fff" />
+            <MaterialCommunityIcons name="pencil" size={28} color="#FF8D68" />
           </TouchableOpacity>
-          <Text style={{ fontSize: 28, fontWeight: "600", color: "#ffffff" }}>
-            Perfil
+          <Text style={{ fontSize: 28, fontWeight: "600", color: "#ffff" }}>
+            
           </Text>
           <TouchableOpacity onPress={() => signOut()}>
-            <MaterialCommunityIcons name="logout" size={28} color="#fff" />
+            <MaterialCommunityIcons name="logout" size={28} color="#ff8d68" />
           </TouchableOpacity>
         </View>
         <View style={style.profileImageContainer}>
@@ -195,12 +195,13 @@ export default function Profile() {
             style={{
               fontSize: 16,
               fontWeight: "400",
+              color:"#fff",
             }}
           >
             Meus Dados
           </Text>
           <View style={style.inputBox}>
-            <Feather name="user" size={24} color="#8a8787" />
+            <Feather name="user" size={24} color="#FF8D68" />
             <TextInput
               value={username}
               editable={editable}
@@ -210,7 +211,7 @@ export default function Profile() {
             />
           </View>
           <View style={style.inputBox}>
-            <Feather name="mail" size={24} color="#8a8787" />
+            <Feather name="mail" size={24} color="#FF8D68" />
             <TextInput
               value={email}
               editable={editable}
@@ -222,7 +223,7 @@ export default function Profile() {
           <View>
             {editable && (
               <View style={style.inputBox}>
-              <Feather name="lock" size={24} color="#8a8787" />
+              <Feather name="lock" size={24} color="#FF8D68" />
               <TextInput
                 style={style.input}
                 value={password}
@@ -241,8 +242,10 @@ export default function Profile() {
         </View>
         {editable && (
         <View style={{ gap: 8, marginTop: 16, flexDirection: "row" }}>
-        <MyButton onPress={() => setEditable(false)} style={{ flex: 1 }} text="Cancelar" />
-        <MyButton onPress={() => handleSubmit()} style={{ flex: 1 }} text="Salvar alterações" />
+        <MyButton onPress={() => setEditable(false)} style={{ flex: 1, alignItems: "center",
+         justifyContent:"center", borderRadius:15}} text="Cancelar" />
+        <MyButton onPress={() => handleSubmit()} style={{ flex: 1,alignItems: "center",
+         justifyContent:"center", borderRadius:15 }} text="Salvar alterações" />
       </View>
         )}
         
@@ -253,10 +256,12 @@ export default function Profile() {
 
 const style = StyleSheet.create({
   container: {
+    backgroundColor:"#1B2C7C",
     alignItems: "flex-start",
+    height:"106%",
   },
   header: {
-    backgroundColor: "#1B1B1F",
+    backgroundColor: "#00055C",
     width: "100%",
     padding: 12,
     height: 100,
@@ -274,9 +279,6 @@ const style = StyleSheet.create({
   profileImage: {
     width: 200,
     height: 200,
-    borderRadius: 100,
-    borderWidth: 6,
-    borderColor: "#DC1637",
   },
   username: {
     alignSelf: "center",
@@ -286,12 +288,14 @@ const style = StyleSheet.create({
     marginBottom: 8,
     fontSize: 40,
     fontWeight: "600",
+    color:"#fff"
+
   },
   cameraButton: {
     position: "absolute",
     bottom: 10,
     right: 10,
-    backgroundColor: "#DC1637",
+    backgroundColor: "#000",
     padding: 8,
     borderRadius: 100,
   },
@@ -300,15 +304,16 @@ const style = StyleSheet.create({
     alignItems: "center",
     gap: 16,
     padding: 16,
-    borderWidth: 1,
-    borderColor: "#8a8787",
-    borderRadius: 4,
+    borderWidth: 2,
+    borderColor: "#FF8D68",
+    borderRadius: 10,
     width: "100%",
   },
 
   input: {
     flex: 1,
     fontSize: 18,
+    color:"#fff"
   },
   error: {
     color: "#DC1637",

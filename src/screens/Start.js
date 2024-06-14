@@ -19,7 +19,7 @@ export default function Start() {
         <MyButton text="Cadastrar" onPress={() => navigation.navigate("SignUp")} style={{flex:1}}/>
       </View>
     </View>
-  );
+  );  
 }
 
 const style = StyleSheet.create({
@@ -27,12 +27,11 @@ const style = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "space-evenly",
-    backgroundColor: "#1B1B1F",
+    backgroundColor: "#1B2C7C",
     padding: 16,
   },
   image: {
-    height: 80,
-    height: 50,
+    height: 270,
   },
   texts: {
     flexDirection: "row",
